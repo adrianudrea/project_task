@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Item : MonoBehaviour
@@ -8,6 +6,7 @@ public class Item : MonoBehaviour
     [Header("Components")]
     [HideInInspector]
     public ItemDatabase.Items item;
+    public GameObject shopInventory;
     public GameObject playerInventory;
     [Header("Values")]
     public int itemId;
@@ -18,16 +17,15 @@ public class Item : MonoBehaviour
     public Text itemPrice;
     public Button itemBuyButton;
     public Button itemSellButton;
-    public Button itemEquipButton;
     [Header("Bools")]
     public bool isPurchased;
-    public bool isEquipped;
 
     private void Start()
     {
         playerInventory = GameObject.FindGameObjectWithTag("PlayerInventory");
-        itemBuyButton.onClick.AddListener(BuyItem);
-        itemSellButton.onClick.AddListener(SellItem);
+        shopInventory = GameObject.FindGameObjectWithTag("ShopInventory");
+
+        ButtonFunctionality();
     }
 
     private void Update()
@@ -35,16 +33,25 @@ public class Item : MonoBehaviour
         CheckIfItemIsPurchased();
     }
 
-    private void BuyItem()
+    private void ButtonFunctionality()
     {
+        itemBuyButton.onClick.AddListener(BuyItem);
+        itemSellButton.onClick.AddListener(SellItem);
+    }
+
+    public void BuyItem()
+    {
+        shopInventory.GetComponent<ShopInventory>().itemList.Remove(gameObject);
+        Destroy(gameObject);
         playerInventory.GetComponent<PlayerInventory>().AddItemToInventory(itemId);
     }
 
-    private void SellItem()
+    public void SellItem()
     {
         playerInventory.GetComponent<PlayerInventory>().itemList.Remove(gameObject);
         Destroy(gameObject);
-
+        shopInventory.GetComponent<ShopInventory>().AddItemsToStore(itemId);
+        
     }
     
     private void CheckIfItemIsPurchased()
@@ -53,6 +60,7 @@ public class Item : MonoBehaviour
         {
             itemBuyButton.gameObject.SetActive(false);
             itemSellButton.gameObject.SetActive(true);
+            
         }
         else
         {

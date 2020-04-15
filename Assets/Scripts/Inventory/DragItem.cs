@@ -3,38 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragItem : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDropHandler, IDragHandler
+public class DragItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    public Canvas canvas;
-    private RectTransform rectTransform;
+    public Transform currentHolder;
 
-    private void Awake()
+   public void OnBeginDrag(PointerEventData evenData)
     {
-        rectTransform = GetComponent<RectTransform>();
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        Debug.Log("Enter");
+        currentHolder = transform.parent;
+        transform.SetParent(transform.parent.parent.parent);
+        transform.position = evenData.position;
+        GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
-    }
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        transform.position = eventData.position;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-    }
-
-    public void OnDrop(PointerEventData eventData)
-    {
-
+        transform.SetParent(currentHolder);
+        transform.position = currentHolder.transform.position;
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 }
+

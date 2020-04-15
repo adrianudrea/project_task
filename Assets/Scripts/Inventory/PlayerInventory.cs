@@ -10,9 +10,7 @@ public class PlayerInventory : MonoBehaviour
     [Header("UI Prefab")]
     public GameObject itemUIPrefab;
     [Header("Item Container")]
-    public GameObject itemHolderA;
-    public GameObject itemHolderB;
-    public GameObject itemHolderC;
+    public GameObject itemHolder;
     [Header("List")]
     public List<GameObject> itemList = new List<GameObject>();
 
@@ -33,20 +31,8 @@ public class PlayerInventory : MonoBehaviour
                 newInventoryItem.GetComponent<Item>().itemIcon.GetComponent<Image>().preserveAspect = true;
                 newInventoryItem.GetComponent<Item>().itemPrice.text = itemDatabase.items[i].itemPrice.ToString();
                 newInventoryItem.GetComponent<Item>().isPurchased = true;
+                newInventoryItem.transform.SetParent(itemHolder.transform, false);
                 itemList.Add(newInventoryItem);
-
-                switch (newInventoryItem.GetComponent<Item>().itemType)
-                {
-                    case ItemType.Headwear:
-                        newInventoryItem.transform.SetParent(itemHolderA.transform, false);
-                        break;
-                    case ItemType.Tops:
-                        newInventoryItem.transform.SetParent(itemHolderB.transform, false);
-                        break;
-                    case ItemType.Shoes:
-                        newInventoryItem.transform.SetParent(itemHolderC.transform, false);
-                        break;
-                }
                 break;
             }
         }

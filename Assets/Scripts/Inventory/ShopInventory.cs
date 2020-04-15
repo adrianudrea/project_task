@@ -10,16 +10,22 @@ public class ShopInventory : MonoBehaviour
     [Header("UI Prefab")]
     public GameObject itemUIPrefab;
     [Header("Item Container")]
-    public GameObject itemHolderA;
-    public GameObject itemHolderB;
-    public GameObject itemHolderC;
+    public GameObject itemHolder;
     [Header("Shop List")]
     public List<GameObject> itemList = new List<GameObject>();
+    
 
     private void Start()
     {
         AddItemsToStore(0);
         AddItemsToStore(1);
+        AddItemsToStore(2);
+        AddItemsToStore(3);
+        AddItemsToStore(4);
+        AddItemsToStore(5);
+        AddItemsToStore(6);
+        AddItemsToStore(7);
+        AddItemsToStore(8);
     }
 
     public void AddItemsToStore(int id)
@@ -38,27 +44,8 @@ public class ShopInventory : MonoBehaviour
                 newStoreItem.GetComponent<Item>().itemIcon.GetComponent<Image>().sprite = itemDatabase.items[i].itemIcon;
                 newStoreItem.GetComponent<Item>().itemIcon.GetComponent<Image>().preserveAspect = true;
                 newStoreItem.GetComponent<Item>().itemPrice.text = itemDatabase.items[i].itemPrice.ToString();
+                newStoreItem.transform.SetParent(itemHolder.transform, false);
                 itemList.Add(newStoreItem);
-
-                switch (newStoreItem.GetComponent<Item>().itemType)
-                {
-                    case ItemType.Headwear:
-                        /* breaks unity
-                        for(int x = 0; x < itemHolderA.GetComponent<SlotList>().slotList.Count; i++)
-                        {
-                            itemHolderA.GetComponent<SlotList>().slotList[x].GetComponent<ItemSlot>().slotId = x;
-                            itemHolderA.GetComponent<SlotList>().slotList[x].GetComponent<ItemSlot>().isEmpty = false;
-                            newStoreItem.transform.SetParent(itemHolderA.GetComponent<SlotList>().slotList[x].transform, false);
-                        }
-                        */
-                        break;
-                    case ItemType.Tops:
-                        newStoreItem.transform.SetParent(itemHolderB.transform, false);
-                        break;
-                    case ItemType.Shoes:
-                        newStoreItem.transform.SetParent(itemHolderC.transform, false);
-                        break;
-                }
                 break;
             }
         }
