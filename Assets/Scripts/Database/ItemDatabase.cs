@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public enum ItemType { None, Headwear, Tops, Shoes }
 
@@ -9,6 +7,18 @@ public enum ItemType { None, Headwear, Tops, Shoes }
 public class ItemDatabase : ScriptableObject
 {
     public List<Items> items = new List<Items>();
+
+    public Items GetItemsById(int id)
+    {
+        for(int i = 0; i < items.Count; i++)
+        {
+            if(items[i].itemId == id)
+            {
+                return items[i];
+            }
+        }
+        return null;
+    }
 
     [System.Serializable]
     public class Items
@@ -18,5 +28,6 @@ public class ItemDatabase : ScriptableObject
         public string itemName;
         public Sprite itemIcon;
         public int itemPrice;
+        public bool isPurchased;
     }
 }

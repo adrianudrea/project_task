@@ -18,52 +18,8 @@ MonoBehaviour:
     itemName: Head 1
     itemIcon: {fileID: 21300000, guid: fd6e4fc32c78509458fc45ea4a478ba8, type: 3}
     itemPrice: 25
-    itemPrefab: {fileID: 0}
-  - itemId: 2
-    itemType: 1
-    itemName: Head 2
-    itemIcon: {fileID: 21300000, guid: fd6e4fc32c78509458fc45ea4a478ba8, type: 3}
-    itemPrice: 50
-    itemPrefab: {fileID: 0}
-  - itemId: 3
-    itemType: 1
-    itemName: Head 3
-    itemIcon: {fileID: 21300000, guid: fd6e4fc32c78509458fc45ea4a478ba8, type: 3}
-    itemPrice: 100
-    itemPrefab: {fileID: 0}
-  - itemId: 4
+  - itemId: 1
     itemType: 2
-    itemName: Top 1
-    itemIcon: {fileID: 21300000, guid: 2f1eaeeaad36ee5469eff7ff158f37ba, type: 3}
-    itemPrice: 100
-    itemPrefab: {fileID: 0}
-  - itemId: 5
-    itemType: 2
-    itemName: Top 2
-    itemIcon: {fileID: 21300000, guid: 2f1eaeeaad36ee5469eff7ff158f37ba, type: 3}
-    itemPrice: 150
-    itemPrefab: {fileID: 0}
-  - itemId: 6
-    itemType: 2
-    itemName: Top 3
+    itemName: Top
     itemIcon: {fileID: 21300000, guid: 6fc27c9d7fc2d9448af6851bf935e6d2, type: 3}
-    itemPrice: 200
-    itemPrefab: {fileID: 0}
-  - itemId: 7
-    itemType: 3
-    itemName: Shoes 1
-    itemIcon: {fileID: 21300000, guid: e420c5bc93cb2604695a893500c897e3, type: 3}
-    itemPrice: 100
-    itemPrefab: {fileID: 0}
-  - itemId: 8
-    itemType: 3
-    itemName: Shoes 2
-    itemIcon: {fileID: 21300000, guid: e420c5bc93cb2604695a893500c897e3, type: 3}
-    itemPrice: 150
-    itemPrefab: {fileID: 0}
-  - itemId: 9
-    itemType: 3
-    itemName: Shoes 3
-    itemIcon: {fileID: 21300000, guid: e420c5bc93cb2604695a893500c897e3, type: 3}
-    itemPrice: 200
-    itemPrefab: {fileID: 0}
+    itemPrice: 50
